@@ -1,0 +1,61 @@
+﻿@model IEnumerable<MvcCarRental2.Web.Domain.Brand>
+
+@{
+    ViewData["Title"] = "Markalar";
+}
+
+<div class="container mt-4">
+    <h2>@ViewData["Title"]</h2>
+
+
+    <div class="text-end mb-3">
+        <a class="btn btn-success" asp-area="Admin" asp-controller="Brand" asp-action="Create">
+            <i class="bi bi-plus-circle"></i> Yeni Marka Ekle
+        </a>
+    </div>
+
+
+    @if (Model == null || !Model.Any())
+    {
+        <p class="text-center">Henüz marka eklenmedi.</p>
+    }
+    else
+    {
+        <table class="table table-striped">
+            <thead>
+                <tr>
+
+                    <th>Marka Adı</th>
+                    <th>Resim Adresi</th>
+                    <th>İşlemler</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var brand in Model)
+                {
+                    <tr>
+
+                        <td>@brand.Name</td>
+                        <td>
+                            @if (!string.IsNullOrEmpty(brand.ImageAdress))
+                            {
+                               <img src="@brand.ImageAdress"
+                                    
+                                    class="img-thumbnail rounded"
+                                    width="80"
+                                    height="60" />
+                            }
+                        </td>
+                        <td>
+
+                            <a href="@Url.Action("Edit", "Brand", new { area = "Admin", id = brand.Id })" class="btn btn-warning btn-sm">Düzenle</a>
+                            <form action="@Url.Action("Delete", "Brand", new { area = "Admin", id = brand.Id })" method="post" class="d-inline">
+                                <button type="submit" class="btn btn-danger btn-sm">Sil</button>
+                            </form>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+</div>

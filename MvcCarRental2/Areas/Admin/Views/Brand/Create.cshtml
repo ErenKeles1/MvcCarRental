@@ -1,0 +1,31 @@
+﻿@model MvcCarRental2.Web.Areas.Admin.Models.BrandViewModel
+
+@{
+    ViewData["Title"] = "Yeni Marka Ekle";
+}
+
+<div class="container mt-4">
+    <h2>@ViewData["Title"]</h2>
+
+    <form asp-action="Create" method="post" enctype="multipart/form-data">
+        <!-- Marka Adı -->
+        <div class="mb-3">
+            <label asp-for="Name" class="form-label">Marka Adı</label>
+            <input asp-for="Name" class="form-control" placeholder="Marka adını girin" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+
+        <!-- Resim Adresi -->
+        <div class="mb-3">
+            <label asp-for="ImageAdress" class="form-label">Resim Adresi</label>
+            <input asp-for="ImageAdress" class="form-control" placeholder="Resim adresini girin" />
+            <span asp-validation-for="ImageAdress" class="text-danger"></span>
+        </div>
+
+        
+        <button type="submit" class="btn btn-success">Kaydet</button>
+        <a href="@Url.Action("Index", "Brand", new { area = "Admin" })" class="btn btn-secondary">İptal</a>
+    </form>
+</div>
+
+

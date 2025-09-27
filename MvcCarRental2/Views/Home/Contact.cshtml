@@ -1,0 +1,64 @@
+﻿
+@model MvcCarRental2.Web.Models.ContactFormViewModel
+
+<div class="container my-5">
+    <div class="row g-4">
+        <!-- Form kısmı -->
+        <div class="col-lg-6">
+            <div class="card shadow-sm p-4">
+                <h3 class="card-title mb-4 text-center">İletişim Formu</h3>
+                <form asp-action="SendMessage" method="post" class="needs-validation" novalidate>
+                    @Html.AntiForgeryToken()
+
+                    <div class="mb-3">
+                        <label asp-for="NameSurname" class="form-label"></label>
+                        <input asp-for="NameSurname" class="form-control rounded-pill" placeholder="Ad ve Soyad" required>
+                        <span asp-validation-for="NameSurname" class="text-danger"></span>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label asp-for="Email" class="form-label"></label>
+                            <input asp-for="Email" class="form-control rounded-pill" placeholder="E-Posta" required>
+                            <span asp-validation-for="Email" class="text-danger"></span>
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+                            <label asp-for="Phone" class="form-label"></label>
+                            <input asp-for="Phone" class="form-control rounded-pill" placeholder="Telefon No." required>
+                            <span asp-validation-for="Phone" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Message" class="form-label"></label>
+                        <textarea asp-for="Message" class="form-control rounded-3" rows="5" placeholder="Mesajınız" required></textarea>
+                        <span asp-validation-for="Message" class="text-danger"></span>
+                    </div>
+
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-primary btn-lg rounded-pill">Gönder</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Harita kısmı -->
+        <div class="col-lg-6">
+            <div class="card shadow-sm p-0">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3602.4416281007743!2d29.18318887645039!3d41.01370451909001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14cace5581d5268b%3A0x3df2a6761f256b82!2sCMOS%20Teknoloji!5e1!3m2!1str!2str!4v1754381627644!5m2!1str!2str"
+                        width="100%"
+                        height="100%"
+                        style="border:0; min-height:400px;"
+                        allowfullscreen=""
+                        loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+}

@@ -1,0 +1,69 @@
+﻿@model MvcCarRental2.Web.Areas.Admin.Models.CarViewModel
+@{
+    ViewData["Title"] = "Araç Düzenle";
+}
+
+<div class="container mt-4">
+    <h2>@ViewData["Title"]</h2>
+
+    <form asp-action="Edit" method="post" enctype="multipart/form-data">
+        <input asp-for="Id" type="hidden" />
+
+        <div class="mb-3">
+            <label class="form-label">Id</label>
+            <input value="@Model.Id" class="form-control" readonly />
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="PlateNumber" class="form-label">Plaka Numarası</label>
+            <input asp-for="PlateNumber" class="form-control" placeholder="Plaka numarasını girin" />
+            <span asp-validation-for="PlateNumber" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="ModelId" class="form-label">Model</label>
+            <select asp-for="ModelId" asp-items="@(ViewBag.Models as SelectList)" class="form-select">
+                <option value="">Model seçin</option>
+            </select>
+            <span asp-validation-for="ModelId" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Year" class="form-label">Yıl</label>
+            <input asp-for="Year" type="number" class="form-control" min="1900" max="@DateTime.Now.Year" />
+            <span asp-validation-for="Year" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Price" class="form-label">Günlük Kiralama Fiyatı (₺)</label>
+            <input asp-for="Price" type="number" step="0.01" min="0" class="form-control" />
+            <span asp-validation-for="Price" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="TransmissionType" class="form-label">Vites Türü</label>
+            <select asp-for="TransmissionType" asp-items="@Html.GetEnumSelectList<MvcCarRental2.Web.Domain.TransmissionTypes>()" class="form-select">
+                <option value="">Vites türü seçin</option>
+            </select>
+            <span asp-validation-for="TransmissionType" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="ImageAdress" class="form-label">Resim Adresi</label>
+            <input asp-for="ImageAdress" class="form-control" placeholder="Araç resim URL'sini girin" />
+            <span asp-validation-for="ImageAdress" class="text-danger"></span>
+            @if (!string.IsNullOrEmpty(Model.ImageAdress))
+            {
+                <div class="mt-2">
+                    <small class="text-muted">Mevcut resim:</small><br>
+                    <img src="@Model.ImageAdress" alt="Araç resmi" style="max-width: 200px; max-height: 150px;" class="img-thumbnail" />
+                </div>
+            }
+        </div>
+
+        <div class="mb-3">
+            <button type="submit" class="btn btn-success">Güncelle</button>
+            <a href="@Url.Action("Index", "Car", new { area = "Admin" })" class="btn btn-secondary">İptal</a>
+        </div>
+    </form>
+</div>

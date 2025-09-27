@@ -1,0 +1,54 @@
+﻿@model IEnumerable<MvcCarRental2.Web.Domain.Model>
+@{ViewData["Title"] = "Modeller";
+}
+<div class="text-end mb-3">
+    <h2>@ViewData["Title"]</h2>
+    <a class="btn btn-success" asp-area="Admin" asp-controller="Model" asp-action="Create">
+        <i class="bi bi-plus-circle"></i> Yeni Araç Modeli ekle
+    </a>
+</div>
+@if (Model == null || !Model.Any())
+{
+    <p>Henüz Model Eklenmedi</p>
+}
+else
+{
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                
+                <th>Model Adı</th>
+                <th>Marka Adı</th>
+                <th>Model Türü</th>
+                <th>Motor Türü</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var modeller in Model)
+            {
+                <tr>
+                    
+                    <td>@modeller.Name</td>
+                    <td>@modeller.Brand.Name</td>
+                    <td>@modeller.CarType.Name</td>
+                    <td>@modeller.EngineType</td>
+                    
+
+                    <td>
+                        <a href="@Url.Action("Edit", "Model", new { area = "Admin", id = modeller.Id })" class="btn btn-warning btn-sm">Düzenle</a>
+                        <form action="@Url.Action("Delete", "Model", new { area = "Admin", id = modeller.Id })" method="post" class="d-inline">
+                            <button type="submit" class="btn btn-danger btn-sm">Sil</button>
+                        </form>
+                    </td>
+
+                </tr>
+
+            }
+        </tbody>
+
+
+
+
+    </table>
+}

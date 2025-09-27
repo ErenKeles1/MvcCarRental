@@ -1,0 +1,19 @@
+﻿@model MvcCarRental2.Web.Areas.Admin.Models.CarTypeViewModel
+
+@{
+    ViewData["Title"] = "Create Car Type";
+}
+
+<h1>Create Car Type</h1>
+
+<form asp-action="Create" method="post">
+    <div class="mb-3">
+        <label asp-for="Name" class="form-label">Car Type Name</label>
+        <input asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Save</button>
+</form>
+
+<a href="@Url.Action("Index")" class="btn btn-secondary mt-3">Back to List</a>

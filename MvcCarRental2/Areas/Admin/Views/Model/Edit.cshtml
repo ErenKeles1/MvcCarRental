@@ -1,0 +1,48 @@
+﻿@model MvcCarRental2.Web.Areas.Admin.Models.ModelViewModel
+@{
+    ViewData["Title"] = "Edit Model";
+}
+
+<h1>Edit Model</h1>
+
+<form asp-action="Edit" method="post">
+    <input type="hidden" asp-for="Id" />
+
+    <div class="mb-3">
+        <label asp-for="Name" class="form-label">Model Name</label>
+        <input asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="BrandId" class="form-label">Brand</label>
+        <select asp-for="BrandId" class="form-select" asp-items="ViewBag.Brands">
+            <option value="">Select Brand</option>
+        </select>
+        <span asp-validation-for="BrandId" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="CarTypeId" class="form-label">Car Type</label>
+        <select asp-for="CarTypeId" class="form-select" asp-items="ViewBag.CarTypes">
+            <option value="">Select Car Type</option>
+        </select>
+        <span asp-validation-for="CarTypeId" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="EngineType" class="form-label">Engine Type</label>
+        <select asp-for="EngineType" class="form-select" asp-items="@(new SelectList(ViewBag.EngineTypes))">
+            <option value="">Select Engine Type</option>
+        </select>
+        <span asp-validation-for="EngineType" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <button type="submit" class="btn btn-primary">Update</button>
+        <a href="@Url.Action("Index")" class="btn btn-secondary">Cancel</a>
+    </div>
+</form>
+
+@{
+}

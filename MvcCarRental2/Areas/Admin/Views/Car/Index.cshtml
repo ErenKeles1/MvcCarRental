@@ -1,0 +1,64 @@
+﻿@model IEnumerable<MvcCarRental2.Web.Domain.Car>
+@{
+    ViewData["Title"] = "Araçlar";
+}
+<div class="text-end mb-3">
+    <h2>@ViewData["Title"]</h2>
+    <a class="btn btn-success" asp-area="Admin" asp-controller="Car" asp-action="Create">
+        <i class="bi bi-plus-circle"></i> Yeni Araç ekle
+    </a>
+</div>
+@if (Model == null || !Model.Any())
+{
+    <p class="text-center">Henüz Marka Eklenmedi</p>
+}
+else
+{
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                
+                <th>Plaka Numarası</th>
+                <th>Araç Modeli</th>
+                <th>Model Yılı</th>
+                <th>Fiyat</th>
+                <th>Vites Tipi</th>
+                <th>Resim Adresi</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var car in Model)
+            {
+                <tr>
+
+                    <td>@car.PlateNumber </td>
+                    <td>@car.Model.Name </td>
+                    <td>@car.Year</td>
+                    <td>@car.Price</td>
+                    <td>@car.TransmissionType</td>
+                    <td>
+                        @if (!string.IsNullOrEmpty(car.ImageAdress))
+                        {
+                            <img src="@car.ImageAdress"
+                                 alt="@car.Model"
+                                 class="img-thumbnail rounded"
+                                 width="80"
+                                 height="60" />
+                        }
+                        else
+                        {
+                            <span class="text-muted small">Resim yok</span>
+                        }
+                    </td>
+                    <td>
+                        <a href="@Url.Action("Edit", "Car", new { area = "Admin", id = car.Id })" class="btn btn-warning btn-sm">Düzenle</a>
+                        <form action="@Url.Action("Delete", "Car", new { area = "Admin", id = car.Id })" method="post" class="d-inline">
+                            <button type="submit" class="btn btn-danger btn-sm">Sil</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

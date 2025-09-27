@@ -1,0 +1,32 @@
+﻿@{
+    ViewData["Title"] = "Admin Paneli";
+    
+}
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="welcome-card">
+                <div class="car-icon">
+                    <i class="fas fa-car"></i>
+                </div>
+
+                <h2 class="mb-4">
+                    <i class="fas fa-shield-alt text-primary me-2"></i>
+                    Admin Paneline Hoşgeldiniz
+                </h2>
+
+                <p class="lead text-muted mb-4">
+                    MvcCarRental2 araç kiralama sisteminin yönetim panelinden
+                    tüm işlemlerinizi gerçekleştirebilirsiniz.
+                </p>
+                <div class="mt-4">
+                    <small class="text-muted">
+                        <i class="fas fa-clock me-1"></i>
+                        Son giriş: @DateTime.Now.ToString("dd.MM.yyyy HH:mm")
+                    </small>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,41 @@
+﻿@model IEnumerable<MvcCarRental2.Web.Domain.Rent>
+@{ ViewData["Title"] = "Kiralama İşlemleri";
+}
+<div class="text-end mb-3">
+    <h2>@ViewData["Title"]</h2>
+
+</div>
+@if (Model == null || !Model.Any())
+{
+    <p>Henüz kiralama yapılmadı</p>
+}
+else
+{
+    <table class="table table-striped">
+        <thead>
+            <tr>
+               
+                <th>Plaka Numarası</th>
+                <th>Araç Yılı</th>
+                <th>Araç Modeli</th>
+                <th>Araç Markası</th>
+                <th>Başlangıç zamanı</th>
+                <th>Bitiş zamanı</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var rent in Model)
+                {
+                    <tr>
+                        
+                        <td>@rent.Car?.PlateNumber</td>
+                        <td>@rent.Car?.Year</td>
+                        <td>@rent.Car?.Model.Name</td>
+                        <td>@rent.Car?.Model.Brand.Name</td>
+                        <td>@rent.StartDate</td>
+                        <td>@rent.EndDate</td>
+                    </tr>
+                }
+        </tbody>
+    </table>
+}
